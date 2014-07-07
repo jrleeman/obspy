@@ -9,8 +9,10 @@ import unittest
 
 
 class CoreTestCase(unittest.TestCase):
+
     """
     """
+
     def setUp(self):
         # Directory where the test files are located
         self.path = os.path.dirname(__file__)
@@ -19,7 +21,8 @@ class CoreTestCase(unittest.TestCase):
         """
         Testing reading DYNA file with 13000 pts.
         """
-        testfile = os.path.join(self.path, 'data', 'IT.AQG..HNE.D.20090330.215717.UAC.ACC.DYN')
+        testfile = os.path.join(
+            self.path, 'data', 'IT.AQG..HNE.D.20090330.215717.UAC.ACC.DYN')
         # read
         stream = readDYNA(testfile)
         stream.verify()
@@ -29,7 +32,8 @@ class CoreTestCase(unittest.TestCase):
         """
         Testing DYNA file format.
         """
-        testfile = os.path.join(self.path, 'data', 'IT.AQG..HNE.D.20090330.215717.UAC.ACC.DYN')
+        testfile = os.path.join(
+            self.path, 'data', 'IT.AQG..HNE.D.20090330.215717.UAC.ACC.DYN')
         self.assertEqual(isDYNA(testfile), True)
 
     def _compareStream(self, stream):
@@ -39,21 +43,21 @@ class CoreTestCase(unittest.TestCase):
         self.assertEqual(stream[0].stats.delta, 5.000000e-02)
         self.assertEqual(stream[0].stats.npts, 13000)
 #        self.assertEqual(stream[0].stats.sh.COMMENT,
-#                         'TEST TRACE IN QFILE #1')215717
+# 'TEST TRACE IN QFILE #1')215717
         self.assertEqual(stream[0].stats.starttime,
                          UTCDateTime(2009, 3, 30, 21, 57, 17))
         self.assertEqual(stream[0].stats.channel, 'N')
         self.assertEqual(stream[0].stats.station, 'AQG')
         # check last 4 samples
-        data = [ 7.3229351 ,  7.31896305,  7.31557512,  7.31978083]
+        data = [7.3229351,  7.31896305,  7.31557512,  7.31978083]
         np.testing.assert_array_almost_equal(stream[0].data[-4:], data, 5)
-
 
     def test_readAndWriteDYNAFile(self):
         """
         Read and write DYNA file via obspy.sh.core.readDYNA.
         """
-        origfile = os.path.join(self.path, 'data', 'IT.AQG..HNZ.D.20090330.215717.UAC.ACC.DYN')
+        origfile = os.path.join(
+            self.path, 'data', 'IT.AQG..HNZ.D.20090330.215717.UAC.ACC.DYN')
         # read original
         stream1 = readDYNA(origfile)
         stream1.verify()
@@ -75,7 +79,8 @@ class CoreTestCase(unittest.TestCase):
         """
         Read and write ASC file test via obspy.core.
         """
-        origfile = os.path.join(self.path, 'data', 'IT.AQG..HNZ.D.20090330.215717.UAC.ACC.DYN')
+        origfile = os.path.join(
+            self.path, 'data', 'IT.AQG..HNZ.D.20090330.215717.UAC.ACC.DYN')
         # read original
         stream1 = read(origfile, format="DYNA")
         stream1.verify()
@@ -88,6 +93,7 @@ class CoreTestCase(unittest.TestCase):
         stream2.verify()
         self._compareStream(stream2)
         os.remove(tempfile)
+
 
 def suite():
     return unittest.makeSuite(CoreTestCase, 'test')
