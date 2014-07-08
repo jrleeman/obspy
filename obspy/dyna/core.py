@@ -12,7 +12,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from future.builtins import *  # NOQA
 
-from StringIO import StringIO
+from io import StringIO
 from obspy.core import Stream, Trace, UTCDateTime, Stats
 import numpy as np
 import re
