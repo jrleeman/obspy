@@ -163,7 +163,11 @@ ENTRY_POINTS = {
     "obspy.plugin.waveform.DYNA": [
         "isFormat = obspy.dyna.core:isDYNA",
         "readFormat = obspy.dyna.core:readDYNA",
-        "writeFormat = obspy.dyna.core:writeDYNA",
+# TODO!
+# disabled as it currently does not fit the framework. Requires that format
+# specific metadata, i.e. ['dyna'] directory, is present in trace headers.
+#
+#       "writeFormat = obspy.dyna.core:writeDYNA",
     ],
     "obspy.plugin.waveform.ITACA": [
         "isFormat = obspy.dyna.core:isITACA",
