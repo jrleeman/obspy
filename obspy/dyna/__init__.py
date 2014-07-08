@@ -64,6 +64,10 @@ or
 
 >>> st.write('file.dat', format='ITACA') #doctest: +SKIP
 """
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+from future.builtins import *  # NOQA
+
 
 if __name__ == '__main__':
     import doctest
